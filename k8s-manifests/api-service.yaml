@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   namespace: wordsmith
-  name: api-service
+  name: api
   labels:
     app: api-service-app
 spec:

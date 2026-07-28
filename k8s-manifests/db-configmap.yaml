@@ -5,5 +5,27 @@ metadata:
   name: db-schema
 data:
   wordsmith.sql: |
-    -- Wordsmith database initialization schema
+    CREATE TABLE IF NOT EXISTS words (
+        id SERIAL PRIMARY KEY,
+        word TEXT NOT NULL,
+        kind TEXT NOT NULL
+    );
+
+    INSERT INTO words (word, kind) VALUES
+    ('quick', 'adjective'),
+    ('lazy', 'adjective'),
+    ('sleepy', 'adjective'),
+    ('noisy', 'adjective'),
+    ('hungry', 'adjective'),
+    ('brown', 'adjective'),
+    ('fox', 'noun'),
+    ('dog', 'noun'),
+    ('cat', 'noun'),
+    ('mouse', 'noun'),
+    ('bear', 'noun'),
+    ('jumps', 'verb'),
+    ('runs', 'verb'),
+    ('sleeps', 'verb'),
+    ('eats', 'verb'),
+    ('barks', 'verb');
 ---
