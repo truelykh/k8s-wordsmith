@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deploy
+  namespace: wordsmith
+  labels:
+    app: api-deploy-app
+spec:
+  selector:
+    matchLabels:
+      app: api-pod-deploy-app
+  template:
+    metadata:
+      labels:
+        app: api-pod-deploy-app
+    spec:
+      containers:
+        - name: api-pod-deploy-app
+          image: dockersamples/wordsmith-api
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+---

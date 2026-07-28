@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metdata:
+  namespace: wordsmith
+  name: access-db
+  labels:
+    app: db-access
+spec:
+  podSelector:
+    matchLabels:
+      app: db-pod-deploy-app
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: api-pod-deploy-app
+---

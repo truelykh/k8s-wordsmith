@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: wordsmith
+  name: db-deploy
+  labels:
+    app: db-deploy-app
+spec:
+  selector:
+    matchLabels:
+      app: db-deploy-app
+  template:
+    metadata:
+      labels:
+        app: db-pod-deploy-app
+    spec:
+      containers:
+        - name: db
+          image: postgres:10.0-alpine
+          ports:
+            - containerPort: 5432
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          volumeMounts:
+            - name: db-schema
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: db-schema
+          configMap:
+            name: db-schema
+---
