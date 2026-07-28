@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: wordsmith
+  name: db-schema
+data:
+  wordsmith.sql: |
+    -- Wordsmith database initialization schema
+---
